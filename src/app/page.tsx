@@ -3,6 +3,7 @@ import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
 import { LogoMarquee } from "@/components/site/logo-marquee";
 import { Stats } from "@/components/site/stats";
+import { LightChamber } from "@/components/site/light-chamber/light-chamber";
 import { BentoSection } from "@/components/site/bento";
 import { Gallery } from "@/components/site/gallery/gallery";
 import { Testimonials } from "@/components/site/testimonials";
@@ -20,6 +21,7 @@ export default function Home() {
         <Hero />
         <LogoMarquee />
         <Stats />
+        <LightChamber />
         <BentoSection />
         <Gallery />
         <Testimonials />

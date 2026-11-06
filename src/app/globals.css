@@ -386,3 +386,14 @@
   animation: none;
   mix-blend-mode: normal;
 }
+
+/* Light Chamber — shimmering dash for the draggable live beam */
+@keyframes lc-dash {
+  to {
+    stroke-dashoffset: -72;
+  }
+}
+.lc-dash {
+  stroke-dasharray: 12 18;
+  animation: lc-dash 1.1s linear infinite;
+}
