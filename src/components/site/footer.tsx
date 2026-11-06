@@ -159,7 +159,7 @@ export function Footer() {
       <div className="relative border-t border-border/60">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
           <p className="text-xs text-muted-foreground">
-            © 2025 Prism Labs — crafted with every free Magic UI component.
+            © 2026 Prism Labs — crafted with every free Magic UI component.
           </p>
           <div className="flex items-center gap-4">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
