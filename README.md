@@ -33,6 +33,8 @@ Every demo in the gallery is **real and interactive**: hover it, click it, type 
 ## ✨ Live Experience
 
 - **78 live component demos** — nothing is a static image; every specimen mounts only when scrolled into view to keep the page feather-light
+- **The Light Chamber** — a cinematic, hand-choreographed GSAP timeline scrubbed by scroll: one beam travels, meets a prism, and disperses into seven words — then you get to drag the light yourself
+- **The Refraction Room** — a five-figure scroll study closing the gallery: a live-drawn optics plate, kinetic variable-font typography, a horizontal specimen wall (magnetism, gravity, inertia, velocity, orbit) and a fully scroll-scrubbed particle burst you can play backwards
 - **Searchable & filterable gallery** — full-text search plus category filters (Components · Text · Effects · Buttons) with a spring-animated pill
 - **Masonry layout** — cards stack tightly by column, no wasted space, fully responsive from mobile to ultrawide
 - **Dark & light themes** — animated theme toggle with a View Transition crossfade

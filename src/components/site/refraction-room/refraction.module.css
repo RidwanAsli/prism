@@ -1,0 +1,380 @@
+/* ------------------------------------------------------------------ */
+/* The Refraction Room — laboratory chrome                             */
+/* Self-contained styles: the room forces its own ink-dark canvas      */
+/* regardless of the site theme.                                       */
+/* ------------------------------------------------------------------ */
+
+.root {
+  background: #050508;
+  color: #f4f1ea;
+  font-family: "Space Mono", ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide the native cursor inside the room on precise pointers — the
+   scoped custom cursor takes over. */
+@media (pointer: fine) {
+  .root,
+  .root * {
+    cursor: none !important;
+  }
+}
+
+.display {
+  font-family: "Syne", var(--font-geist-sans), sans-serif;
+}
+
+.serif {
+  font-family: "Fraunces Variable", Georgia, serif;
+}
+
+.mono {
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+/* Outlined display numerals / words (technical watermark) */
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 241, 234, 0.2);
+}
+
+/* ------------------------------------------------------------------ */
+/* Kinetic letters — Fraunces variable weight driven by GSAP           */
+/* ------------------------------------------------------------------ */
+
+.letter {
+  font-family: "Fraunces Variable", Georgia, serif;
+  font-variation-settings: "opsz" 144, "wght" var(--w, 100);
+  line-height: 0.94;
+  will-change: transform;
+  /* Fallback weight before hydration for no-JS / reduced motion */
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------ */
+/* Ruler tapes (scene 02) — two tick layers, major + minor             */
+/* ------------------------------------------------------------------ */
+
+.tape {
+  height: 20px;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(244, 241, 234, 0.38) 0 1px,
+      transparent 1px 12px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(244, 241, 234, 0.5) 0 1px,
+      transparent 1px 60px
+    );
+  background-size:
+    100% 7px,
+    100% 16px;
+  background-position:
+    bottom left,
+    bottom left;
+  background-repeat: repeat-x;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ */
+/* Film grain — portaled overlay, viewport-fixed                       */
+/* ------------------------------------------------------------------ */
+
+.grain {
+  position: fixed;
+  inset: -60px;
+  z-index: 46;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: -92px 38px;
+  }
+  50% {
+    background-position: 64px -76px;
+  }
+  75% {
+    background-position: -38px -30px;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Custom cursor — portaled to body, difference blend                  */
+/* ------------------------------------------------------------------ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.cursorDot {
+  position: fixed;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.cursorRing {
+  position: fixed;
+  top: -19px;
+  left: -19px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  mix-blend-mode: difference;
+}
+
+.cursorLabel {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0;
+  transform: scale(0.6);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* HUD rail — portaled to body                                         */
+/* ------------------------------------------------------------------ */
+
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hudRail {
+  position: fixed;
+  top: 50%;
+  left: 22px;
+  transform: translateY(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.hudVertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.5);
+  white-space: nowrap;
+}
+
+.hudTrack {
+  position: relative;
+  width: 1px;
+  height: 132px;
+  background: rgba(244, 241, 234, 0.16);
+  overflow: hidden;
+}
+
+.hudFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  transform: scaleY(0);
+  background: linear-gradient(
+    180deg,
+    #22d3ee,
+    #8b5cf6,
+    #d946ef,
+    #ec4899,
+    #f43f5e,
+    #fb923c,
+    #fbbf24
+  );
+}
+
+.hudIndex {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(244, 241, 234, 0.85);
+}
+
+.hudPill {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(244, 241, 234, 0.18);
+  background: rgba(5, 5, 8, 0.82);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.8);
+}
+
+.hudPillTrack {
+  position: relative;
+  width: 54px;
+  height: 1px;
+  background: rgba(244, 241, 234, 0.2);
+  overflow: hidden;
+}
+
+.hudPillFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    #22d3ee,
+    #d946ef,
+    #fb923c
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Marquee rows (velocity specimen + closing strip)                    */
+/* ------------------------------------------------------------------ */
+
+.marqueeMask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.marqueeRow {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marqueeChunk {
+  display: inline-block;
+  padding-right: 0.5em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Scene chrome                                                        */
+/* ------------------------------------------------------------------ */
+
+.figCaption {
+  position: absolute;
+  left: 22px;
+  top: 88px;
+  z-index: 10;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.72);
+}
+
+.figCaptionRight {
+  position: absolute;
+  right: 22px;
+  top: 88px;
+  z-index: 10;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.5);
+}
+
+/* The right-hand caption has no room beside its sibling on phones. */
+@media (max-width: 639px) {
+  .figCaptionRight {
+    display: none;
+  }
+}
+
+/* Vignette over pinned stages */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120% 90% at 50% 42%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+}
+
+/* Shutter strips at the chamber doors */
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-block: 1px solid rgba(244, 241, 234, 0.1);
+  padding: 14px 22px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.42);
+}
+
+.strip span:nth-child(2) {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .strip span:nth-child(2) {
+    display: inline;
+  }
+}
+
+/* Focus visibility for the room’s buttons (native cursor is hidden) */
+.rrFocus:focus-visible {
+  outline: 1px solid rgba(244, 241, 234, 0.9);
+  outline-offset: 4px;
+}

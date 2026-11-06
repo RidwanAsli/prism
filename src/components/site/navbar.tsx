@@ -20,6 +20,7 @@ const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "Chamber", href: "#chamber" },
   { label: "Collection", href: "#gallery" },
+  { label: "Refraction", href: "#refraction" },
   { label: "Love", href: "#testimonials" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },

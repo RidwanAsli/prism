@@ -6,6 +6,7 @@ import { Stats } from "@/components/site/stats";
 import { LightChamber } from "@/components/site/light-chamber/light-chamber";
 import { BentoSection } from "@/components/site/bento";
 import { Gallery } from "@/components/site/gallery/gallery";
+import { RefractionRoom } from "@/components/site/refraction-room";
 import { Testimonials } from "@/components/site/testimonials";
 import { Pricing } from "@/components/site/pricing";
 import { Faq } from "@/components/site/faq";
@@ -24,6 +25,7 @@ export default function Home() {
         <LightChamber />
         <BentoSection />
         <Gallery />
+        <RefractionRoom />
         <Testimonials />
         <Pricing />
         <Faq />
