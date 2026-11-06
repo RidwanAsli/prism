@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" xml:space="preserve">
+  <defs>
+    <linearGradient id="prism-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#d946ef"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <style type="text/css">
+      .prism-breathe {
+        animation: breathe 2.5s ease-in-out infinite;
+      }
+
+      @keyframes breathe {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <g>
+    <!-- incoming white light beam -->
+    <line x1="1.5" y1="10.5" x2="9.3" y2="14.5" stroke="#a5b4fc" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- the prism -->
+    <path d="M15 4.5 L25.5 23 H4.5 Z" fill="none" stroke="url(#prism-grad)" stroke-width="2.4" stroke-linejoin="round"/>
+
+    <!-- dispersed spectrum, fanning from the right face -->
+    <g class="prism-breathe">
+      <line x1="21.8" y1="16.2" x2="29" y2="16" stroke="#8b5cf6" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="22.7" y1="17.9" x2="29.2" y2="19.6" stroke="#d946ef" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="23.5" y1="19.6" x2="28.8" y2="23.6" stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
